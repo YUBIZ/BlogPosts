@@ -43,7 +43,7 @@ jobs:
         run: dotnet tool install -g dotnet-script
 
       - name: Enumerate file list
-        run: dotnet script Scripts/EnumerateFileList.csx Posts Posts.json --strip-path ./
+        run: dotnet script Scripts/EnumerateFileList.csx Posts Posts.json --exclude-patterns template.md --strip-path ./
       
       - name: Commit file list
         run: |
