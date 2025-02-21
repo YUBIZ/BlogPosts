@@ -33,7 +33,7 @@ jobs:
         run: |
           git fetch origin
           git checkout release
-          git merge origin/main
+          git merge origin/main --allow-unrelated-histories
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
