@@ -31,9 +31,8 @@ jobs:
       
       - name: Merge main
         run: |
-          git fetch origin
-          git checkout release
-          git merge origin/main --allow-unrelated-histories
+          git fetch origin/main
+          git merge origin/main
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -49,5 +48,5 @@ jobs:
       - name: Commit file list
         run: |
           git add Posts.json
-          git commit -m "Update Posts.json"
+          git commit -m "게시글 목록 업데이트"
           git push
