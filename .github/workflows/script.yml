@@ -32,7 +32,7 @@ jobs:
       - name: Merge main
         run: |
           git fetch origin
-          git merge origin/main
+          git reset --hard origin/main
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -49,4 +49,4 @@ jobs:
         run: |
           git add Posts.json
           git commit -m "게시글 목록 업데이트"
-          git push
+          git push -f
