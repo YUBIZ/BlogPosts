@@ -24,7 +24,11 @@ jobs:
         with:
           ref: release
       
-      - run: git merge main
+      - name: Merge main
+        run: |
+          git fetch origin
+          git checkout release
+          git merge origin/main
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
