@@ -1,0 +1,44 @@
+name: Run script
+
+on:
+  push:
+    branches: [main]
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  
+concurrency:
+  group: posts
+  cancel-in-progress: false
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: release
+      
+      - run: git merge main
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Intall script tool
+        run: dotnet tool install -g dotnet-script
+
+      - name: Enumerate file list
+        run: dotnet script Scripts/EnumerateFileList.csx Posts Posts.json
+      
+      - name: Commit file list
+        run: |
+          git add Posts.json
+          git commit -m "Update Posts.json"
+          git push
