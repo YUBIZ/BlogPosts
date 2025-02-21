@@ -31,7 +31,7 @@ jobs:
       
       - name: Merge main
         run: |
-          git fetch origin/main
+          git fetch origin
           git merge origin/main
 
       - name: Setup .NET
