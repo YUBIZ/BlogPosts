@@ -16,8 +16,7 @@ static void EnumerateFileList(string sourceDir, string outputPath, string[] sear
 
     JsonSerializerOptions jsonSerializerOptions = new() { Encoder = JavaScriptEncoder.Create(UnicodeRanges.All) };
 
-    string outputDir = Path.GetDirectoryName(outputPath) ?? throw new("출력 디렉터리가 null입니다.");
-    if (!Directory.Exists(outputDir))
+    if (Path.GetDirectoryName(outputPath) is string outputDir && !string.IsNullOrEmpty(outputDir) && !Directory.Exists(outputDir))
     {
         Directory.CreateDirectory(outputDir);
     }
