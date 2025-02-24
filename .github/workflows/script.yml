@@ -43,10 +43,10 @@ jobs:
         run: dotnet tool install -g dotnet-script
 
       - name: Enumerate file list
-        run: dotnet script Scripts/EnumerateFileList.csx Posts Posts.json --exclude-patterns template.md --strip-path ./
+        run: dotnet script Scripts/EnumerateFileList.csx Docs Docs.json --exclude-patterns template.md --strip-path ./
       
       - name: Commit file list
         run: |
-          git add Posts.json
+          git add Docs.json
           git commit -m "게시글 목록 업데이트"
           git push -f
